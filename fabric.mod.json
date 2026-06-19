@@ -1,0 +1,13 @@
+{
+    "schemaVersion": 1,
+    "authors": [
+        "ProtoStar"
+    ],
+    "environment": "*",
+    "id": "soloind",
+    "version": "1.0.0",
+    "name": "Solomon Ind.",
+    "description": "An Iron man Palladium Addon ",
+    "icon": "logo.png",
+    "license": "All rights reserved"
+}

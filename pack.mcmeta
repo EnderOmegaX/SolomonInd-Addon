@@ -1,0 +1,13 @@
+{
+    "pack": {
+        "id": "soloind",
+        "pack_format": 15,
+        "description": "An Iron man Palladium Addon ",
+        "version": "1.0.0"
+    },
+    "dependencies": {
+        "common": {},
+        "fabric": {},
+        "forge": {}
+    }
+}
