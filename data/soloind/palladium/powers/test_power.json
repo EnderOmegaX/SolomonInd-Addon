@@ -46,7 +46,6 @@
            "cause_fire": false,
            "smelt_blocks": false,
            "commands_on_block_hit": [
-                "say OW wait im not alive",
                 "setblock ~ ~-1 ~ minecraft:magma_block"
            ],
            "commands_on_entity_hit": [
@@ -166,7 +165,7 @@
        "enhancement": {
            "type": "palladium:command",
            "icon": "minecraft:redstone",
-           "title": "null",
+           "title": "Enhancement",
            "bar_color": "red",
            "hidden": false,
            "hidden_in_bar": false,
@@ -175,11 +174,15 @@
            "description": "null",
            "first_tick_commands": [
                 "scale set pehkui:base 1.3",
-                "effect give @s minecraft:strength infinite 1 true"
+                "effect give @s minecraft:strength infinite 1 true",
+                "effect give @s minecraft:jump_boost infinite 1 true",
+                "effect give @s minecraft:speed infinite 1 true"
            ],
            "last_tick_commands": [
                 "scale set pehkui:base 1",
-                "effect clear @s minecraft:strength"
+                "effect clear @s minecraft:strength",
+                "effect clear @s minecraft:jump_boost",
+                "effect clear @s minecraft:speed"
            ],
            "commands": [
                
