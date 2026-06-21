@@ -1,3 +1,5 @@
 {
-    "pack.soloind.name": "Solomon Ind."
+    "pack.soloind.name": "Solomon Ind.",
+    "item.soloind.detonator": "Detonator",
+    "item.soloind.detonator.description": "Holds the funny explosion button in the right hands"
 }

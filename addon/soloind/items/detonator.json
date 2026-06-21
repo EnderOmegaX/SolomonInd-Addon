@@ -1,0 +1,15 @@
+{
+    "type": "palladium:default",
+    "max_stack_size": 1,
+    "creative_mode_tab": "minecraft:combat",
+    "rarity": "rare",
+    "is_fire_resistant": false,
+    "tooltip": [
+        "A detonator of shenanigans",
+        {
+            "translate": "item.soloind.detonator.description",
+            "color": "#FF0000",
+            "underlined": false
+        }
+    ]
+}
