@@ -16,7 +16,11 @@
             "gui_position": [0,-1],
             "description": "null",
             "first_tick_commands": [
-                "tag @s add lightning_proof"
+                "tag @s add lightning_proof",
+                "scoreboard objectives add SoloInd.LightningType dummy",
+                "scoreboard players set @s SoloInd.LightningType 1",
+                "scoreboard objectives add SoloInd.RandomAura dummy",
+                "scoreboard players set @s SoloInd.RandomAura 1"
             ],
             "last_tick_commands": [
                 "tag @s remove lightning_proof"
@@ -46,8 +50,11 @@
            "cause_fire": false,
            "smelt_blocks": false,
            "commands_on_block_hit": [
-                "say OW wait im not alive",
-                "setblock ~ ~-1 ~ minecraft:magma_block"
+                "execute if score @s SoloInd.LightningType matches 1 run setblock ~ ~-1 ~ minecraft:netherrack",
+                "execute if score @s SoloInd.LightningType matches 2 run setblock ~ ~-1 ~ minecraft:lava",
+                "execute if score @s SoloInd.LightningType matches 3 run setblock ~ ~-1 ~ minecraft:basalt",
+                "execute if score @s SoloInd.LightningType matches 4 run setblock ~ ~-1 ~ minecraft:soul_sand",
+                "execute if score @s SoloInd.LightningType matches 5 run setblock ~ ~-1 ~ minecraft:blackstone"
            ],
            "commands_on_entity_hit": [
                 "execute positioned ~ ~ ~ run effect give @e[limit=1,distance=..2] minecraft:glowing 2 0 true"
@@ -61,7 +68,16 @@
                         "needs_empty_hand": false
                     }
                ],
-               "unlocking": []
+               "unlocking": [
+                     {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:crouching"
+                            }
+                        ]
+                    }
+               ]
            }
        },
        "double_lazer": {
@@ -246,11 +262,109 @@
            "conditions": {
                "enabling": [
                     {
-                        "type": "palladium:ability_enabled",
-                        "power": "null",
-                        "ability": "cool_render_layer"
+                        "type": "palladium:or",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "power": "null",
+                                "ability": "cool_render_layer"
+                            },
+                            {
+                                "type": "palladium:objective_score",
+                                "objective": "SoloInd.RandomAura",
+                                "min_score": 1,
+                                "max_score": 20
+                            }
+                        ]
                     }
                ],
+               "unlocking": []
+           }
+       },
+       "scoreboard_increase": {
+           "type": "palladium:command",
+           "icon": "minecraft:command_block",
+           "title": "Increasing the scoreboard",
+           "bar_color": "light_gray",
+           "hidden": false,
+           "hidden_in_bar": false,
+           "list_index": -1,
+           "gui_position": "null",
+           "description": "null",
+           "first_tick_commands": [],
+           "last_tick_commands": [
+                
+           ],
+           "commands": [
+                "execute if score @s SoloInd.Test matches 20 run scoreboard players set @s SoloInd.Test -1",
+               "scoreboard players add @s SoloInd.Test 1"
+           ],
+           "conditions": {
+               "enabling": 
+               [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false
+                    }
+                ],
+               
+               "unlocking": []
+           }
+       },
+       "change_lightning_type": {
+           "type": "palladium:command",
+           "icon": "minecraft:netherrack",
+           "title": "Toggle Lightning Mode",
+           "bar_color": "light_gray",
+           "hidden": false,
+           "hidden_in_bar": false,
+           "list_index": 0,
+           "gui_position": "null",
+           "description": "Toggles the block that the lightning will produce",
+           "first_tick_commands": [
+                "scoreboard players add @s SoloInd.LightningType 1",
+               "execute if score @s SoloInd.LightningType matches 6 run scoreboard players set @s SoloInd.LightningType 1"
+               
+            ],
+           "last_tick_commands": [],
+           "commands": [],
+           "conditions": {
+               "enabling": [
+                    {
+                        "type": "palladium:action",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true
+                    }
+               ],
+               "unlocking": [                    
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ]
+           }
+       },
+       "random_aura_tick":{
+           "type": "palladium:command",
+           "icon": "minecraft:command_block",
+           "title": "null",
+           "bar_color": "light_gray",
+           "hidden": true,
+           "hidden_in_bar": true,
+           "list_index": -1,
+           "gui_position": "null",
+           "description": "Increases the aura scoreboard to give the effect a flickering aura",
+           "first_tick_commands": [],
+           "last_tick_commands": [],
+           "commands": [
+               "scoreboard players add @s SoloInd.RandomAura 1",
+               "execute if score @s SoloInd.RandomAura matches 50 run scoreboard players set @s SoloInd.RandomAura 1"
+           ],
+           "conditions": {
+               "enabling": [],
                "unlocking": []
            }
        }
